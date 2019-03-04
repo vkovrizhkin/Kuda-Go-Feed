@@ -5,28 +5,33 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FeedActivity">
-    
+        tools:context=".view.FeedActivity">
+
     <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="367dp"
             app:cardCornerRadius="8dp"
+            style="@style/card_container"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp">
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent">
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 >
+
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:background="#123543"
                     android:contentDescription="Image"/>
+
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:orientation="vertical">
+                    style="@style/item_info_container">
+
                 <TextView
                         android:text="Музыкальный фестиваль LiveFest Summer"
                         android:textSize="16sp"
@@ -34,6 +39,7 @@
                         android:textColor="#b9000000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+
                 <TextView
                         android:text="Lalalala"
                         android:textSize="14sp"
@@ -41,9 +47,11 @@
                         android:textColor="#000000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                     <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -51,9 +59,11 @@
                             tools:ignore="ContentDescription"/>
 
                 </LinearLayout>
+
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                     <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -61,9 +71,11 @@
                             tools:ignore="ContentDescription"/>
 
                 </LinearLayout>
+
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                     <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

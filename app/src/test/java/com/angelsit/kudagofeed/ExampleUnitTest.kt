@@ -1,4 +1,4 @@
-package com.kudagofeed.angelsit.kudagofeed
+package com.angelsit.kudagofeed
 
 import org.junit.Test
 
