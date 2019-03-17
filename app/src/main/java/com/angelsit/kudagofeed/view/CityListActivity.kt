@@ -12,9 +12,12 @@ class CityListActivity : AppCompatActivity() {
 
     private val presenter = CitiesPresenter(this)
 
+    private val currentCity = City("msk", "Москва")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_city_list)
+
 
     }
 
@@ -25,7 +28,7 @@ class CityListActivity : AppCompatActivity() {
 
     fun showCityList(cityList: List<City>) {
         cities_rec_view.layoutManager = LinearLayoutManager(this)
-        cities_rec_view.adapter = CityRecViewAdapter(cityList, this, selectCity)
+        cities_rec_view.adapter = CityRecViewAdapter(cityList, this, selectCity, currentCity)
 
     }
 

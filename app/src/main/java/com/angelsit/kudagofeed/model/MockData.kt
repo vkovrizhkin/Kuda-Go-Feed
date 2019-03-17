@@ -7,7 +7,7 @@ import java.lang.Exception
 
 object MockData {
 
-    fun getLocations(context: Context) : List<City>?{
+    fun getLocations(context: Context): List<City> {
         val jsonString: String?
         try {
             val inputStream = context.assets.open("mock_data/cities.json")
@@ -23,14 +23,14 @@ object MockData {
 
 
             return parseCitiesFromJsonArray(jsonResponse.getJSONArray("cities"))
-        } catch (ex: Exception){
-            return null
+        } catch (ex: Exception) {
+            return emptyList()
         }
     }
 
-    private fun parseCitiesFromJsonArray(jsonArray: JSONArray): List<City>{
+    private fun parseCitiesFromJsonArray(jsonArray: JSONArray): List<City> {
         val cityList = mutableListOf<City>()
-        for (i in 0..(jsonArray.length()-1)){
+        for (i in 0..(jsonArray.length() - 1)) {
             val name = jsonArray.getJSONObject(i).getString("name")
             val slug = jsonArray.getJSONObject(i).getString("slug")
             cityList.add(i, City(slug, name))
