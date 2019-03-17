@@ -1,4 +1,3 @@
 package com.angelsit.kudagofeed.model
 
-class City{
-}
+class City (val slug: String, val name: String)

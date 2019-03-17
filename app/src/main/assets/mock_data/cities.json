@@ -1,0 +1,56 @@
+{
+  "cities": [
+    {
+      "slug": "ekb",
+      "name": "Екатеринбург"
+    },
+    {
+      "slug": "kev",
+      "name": "Киев"
+    },
+    {
+      "slug": "krasnoyarsk",
+      "name": "Красноярск"
+    },
+    {
+      "slug": "krd",
+      "name": "Краснодар"
+    },
+    {
+      "slug": "kzn",
+      "name": "Казань"
+    },
+    {
+      "slug": "msk",
+      "name": "Москва"
+    },
+    {
+      "slug": "nnv",
+      "name": "Нижний Новгород"
+    },
+    {
+      "slug": "nsk",
+      "name": "Новосибирск"
+    },
+    {
+      "slug": "smr",
+      "name": "Самара"
+    },
+    {
+      "slug": "sochi",
+      "name": "Сочи"
+    },
+    {
+      "slug": "spb",
+      "name": "Санкт-Петербург"
+    },
+    {
+      "slug": "ufa",
+      "name": "Уфа"
+    },
+    {
+      "slug": "vbg",
+      "name": "Выборг"
+    }
+  ]
+}
