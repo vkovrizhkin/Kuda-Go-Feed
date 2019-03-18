@@ -1,5 +1,6 @@
 package com.angelsit.kudagofeed.view
 
+import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -7,6 +8,9 @@ import com.angelsit.kudagofeed.R
 import com.angelsit.kudagofeed.model.City
 import com.angelsit.kudagofeed.presenter.CitiesPresenter
 import kotlinx.android.synthetic.main.activity_city_list.*
+import android.content.Intent
+
+
 
 class CityListActivity : AppCompatActivity() {
 
@@ -34,5 +38,11 @@ class CityListActivity : AppCompatActivity() {
 
     private val selectCity = { city: City ->
         println(city.name)
+        val intent = Intent()
+        intent.putExtra("name", city.name)
+        intent.putExtra("slug", city.slug)
+        intent.putExtra("city", city)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

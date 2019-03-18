@@ -25,13 +25,13 @@ class CityRecViewAdapter(
         return cityList.size
     }
 
-    override fun onBindViewHolder(p0: CityViewHolder, p1: Int) {
+    override fun onBindViewHolder(holder: CityViewHolder, index: Int) {
 
-        val city = cityList[p1]
+        val city = cityList[index]
 
-        p0.nameTextView.text = cityList[p1].name
-        p0.selectedIcon.visibility = if(city.slug == selectedCity.slug) View.VISIBLE else View.GONE
-        p0.container.setOnClickListener { callback(city)}
+        holder.nameTextView.text = cityList[index].name
+        holder.selectedIcon.visibility = if(city.slug == selectedCity.slug) View.VISIBLE else View.GONE
+        holder.container.setOnClickListener { callback(city)}
     }
 
     class CityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
