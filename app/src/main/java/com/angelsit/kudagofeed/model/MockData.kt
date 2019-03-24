@@ -38,4 +38,45 @@ object MockData {
 
         return cityList
     }
+
+    fun getEvents(context: Context): List<Event> {
+        val jsonString: String?
+        try {
+            val inputStream = context.assets.open("mock_data/cities.json")
+            val size = inputStream.available()
+
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+
+            jsonString = String(buffer, Charsets.UTF_8)
+
+            val jsonResponse = JSONObject(jsonString)
+
+
+            return parseEventsFromJsonArray(jsonResponse.getJSONArray("results"))
+        } catch (ex: Exception) {
+            return emptyList()
+        }
+    }
+
+    private fun parseEventsFromJsonArray(jsonArray: JSONArray): List<Event> {
+        val eventList = mutableListOf<Event>()
+        for (i in 0..(jsonArray.length() - 1)) {
+            val title = jsonArray.getJSONObject(i).getString("title")
+            val place = jsonArray.getJSONObject(i).getJSONObject("place")?.getString("address") ?: ""
+            val description = jsonArray.getJSONObject(i).getString("description")
+            val price = jsonArray.getJSONObject(i).getString("price")
+            val imageArray = jsonArray.getJSONObject(i).getJSONArray("images")
+            val imageUrl = if (imageArray.length() > 0) imageArray.getJSONObject(0).getString("image") else ""
+
+            eventList.add(i, Event(
+                title,description,imageUrl,price,place, 0,0
+            ))
+
+        }
+
+        return eventList
+    }
+
 }

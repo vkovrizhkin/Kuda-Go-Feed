@@ -28,8 +28,6 @@ class FeedActivity : AppCompatActivity() {
         change_city_button.text = "Москва"
     }
 
-    //TODO  вернуть го
-    // род ...
     private val onChangeCityClick = fun() {
         val intent = Intent(this, CityListActivity::class.java)
         startActivityForResult(intent, CITY_REQUEST_CODE)
