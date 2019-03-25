@@ -3,9 +3,11 @@ package com.angelsit.kudagofeed.view
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.angelsit.kudagofeed.R
 import com.angelsit.kudagofeed.model.City
+import com.angelsit.kudagofeed.model.Event
 import com.angelsit.kudagofeed.presenter.FeedPresenter
 import kotlinx.android.synthetic.main.activity_feed.*
 
@@ -26,6 +28,22 @@ class FeedActivity : AppCompatActivity() {
             onChangeCityClick()
         }
         change_city_button.text = "Москва"
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
+    }
+
+    fun showEvents(eventList: List<Event>){
+
+        events_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        events_recycler_view.adapter = FeedRecViewAdapter(eventList, this, eventItemOnClick)
+
+    }
+
+    private val eventItemOnClick = { event: Event ->
+        println(event.title)
     }
 
     private val onChangeCityClick = fun() {

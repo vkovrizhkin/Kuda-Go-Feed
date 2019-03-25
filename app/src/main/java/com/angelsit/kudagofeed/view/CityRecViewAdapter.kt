@@ -9,7 +9,7 @@ import com.angelsit.kudagofeed.R
 import com.angelsit.kudagofeed.model.City
 import kotlinx.android.synthetic.main.city_list_item.view.*
 
-class CityRecViewAdapter(
+class CityRecViewAdapter    (
     private val cityList: List<City>,
     val context: Context,
     val callback: (City) -> Unit,
