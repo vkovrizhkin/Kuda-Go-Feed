@@ -26,6 +26,7 @@ class FeedRecViewAdapter(
     override fun onBindViewHolder(holder: FeedRecViewAdapter.EventViewHolder, index: Int) {
         val event = eventList[index]
 
+        holder.container.setOnClickListener{callback(event)}
         holder.titleTextView.text = event.title
         holder.descTextView.text = event.shortDescription
         holder.priceTextView.text = event.price

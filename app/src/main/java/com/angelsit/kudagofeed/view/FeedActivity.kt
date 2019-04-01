@@ -43,6 +43,10 @@ class FeedActivity : AppCompatActivity() {
     }
 
     private val eventItemOnClick = { event: Event ->
+
+        val intent = Intent(this, EventDetailsActivity::class.java)
+        intent.putExtra("eventId", event.title) // todo поменять на id
+        startActivity(intent)
         println(event.title)
     }
 
