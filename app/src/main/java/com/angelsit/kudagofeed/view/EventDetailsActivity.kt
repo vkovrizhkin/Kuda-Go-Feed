@@ -16,6 +16,9 @@ class EventDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_details)
+
+        photos_view_pager.adapter = photosPagerAdapter
+        pager_indicator.setViewPager(photos_view_pager)
     }
 
     override fun onResume() {
@@ -25,7 +28,10 @@ class EventDetailsActivity : AppCompatActivity() {
     }
 
     fun showDetails(eventDetails: EventDetails){
-        photos_view_pager.adapter = photosPagerAdapter
+        title_text_view.text = eventDetails.title
+        desc_text_view.text = eventDetails.description
+        short_desc_text_view.text = eventDetails.shortDescription
+
         photosPagerAdapter.setPhotos(eventDetails.photos)
         progress_bar.visibility = View.GONE
 
