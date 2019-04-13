@@ -4,6 +4,7 @@ import com.angelsit.kudagofeed.model.Event
 
 interface MainContract {
     interface View{
+
         fun showLoader()
         fun showError()
         fun showEvents(events : List<Event>)
