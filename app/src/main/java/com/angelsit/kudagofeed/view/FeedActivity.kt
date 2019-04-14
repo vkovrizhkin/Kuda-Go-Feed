@@ -48,6 +48,8 @@ class FeedActivity : AppCompatActivity() {
         change_city_button.setOnClickListener {
             onChangeCityClick()
         }
+        swipe_to_refresh.setOnRefreshListener { presenter.onUpdate() }
+        swipe_to_refresh.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent ,R.color.colorPrimaryDark)
 
     }
 
@@ -63,6 +65,9 @@ class FeedActivity : AppCompatActivity() {
 
     fun showEvents(eventList: List<Event>) {
         //this.eventList = eventList as MutableList<Event>
+        if(swipe_to_refresh.isRefreshing){
+            swipe_to_refresh.isRefreshing = false
+        }
         this.eventList.clear()
         this.eventList.addAll(eventList)
 

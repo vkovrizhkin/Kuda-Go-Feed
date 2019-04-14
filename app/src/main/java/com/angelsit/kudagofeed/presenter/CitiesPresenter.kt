@@ -15,6 +15,10 @@ class CitiesPresenter(private val mView: CityListActivity): MainContract.Present
     }
 
     fun onResume(){
+        mView.showLoading()
+        Api.getCities(this)
+    }
+    fun onUpdate(){
         Api.getCities(this)
     }
 }

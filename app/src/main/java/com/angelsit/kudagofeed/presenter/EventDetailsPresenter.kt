@@ -20,4 +20,8 @@ class EventDetailsPresenter(private val mView: EventDetailsActivity): MainContra
         mView.showLoading()
         Api.getEventDetails(eventId, this)
     }
+    fun onUpdate(eventId: String){
+
+        Api.getEventDetails(eventId, this)
+    }
 }

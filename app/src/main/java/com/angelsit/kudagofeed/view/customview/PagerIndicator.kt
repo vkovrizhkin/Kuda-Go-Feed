@@ -10,12 +10,12 @@ import android.widget.LinearLayout
 import com.angelsit.kudagofeed.R
 
 class PagerIndicator @JvmOverloads constructor(
-    context: Context,
-    attributeSet: AttributeSet? = null,
-    defStyleAttr: Int = 0
+        context: Context,
+        attributeSet: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : LinearLayout(context, attributeSet, defStyleAttr),
-    ViewPager.OnAdapterChangeListener,
-    ViewPager.OnPageChangeListener {
+        ViewPager.OnAdapterChangeListener,
+        ViewPager.OnPageChangeListener {
 
     private var viewPager: ViewPager? = null
     private val indicatorSize = context.resources.getDimensionPixelSize(R.dimen.indicator_size)
@@ -44,6 +44,7 @@ class PagerIndicator @JvmOverloads constructor(
     }
 
     override fun onPageSelected(position: Int) {
+        if (childCount <= 1) return
         for (i in 0 until childCount) {
             val child = getChildAt(i)
             if (child is IndicatorView) {

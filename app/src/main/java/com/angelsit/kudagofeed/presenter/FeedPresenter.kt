@@ -27,6 +27,9 @@ class FeedPresenter(private val mView: FeedActivity) : MainContract.Presenter.Ge
         mView.showLoading()
         Api.getEvents(mView.selectedCity!!.slug, this)
     }
+    fun onUpdate() {
+        Api.getEvents(mView.selectedCity!!.slug, this)
+    }
 
     fun onCreate() {
         val selectedCity = SharedPreferenceManager.getSelectedCity(mView)

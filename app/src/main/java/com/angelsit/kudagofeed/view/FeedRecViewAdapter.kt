@@ -44,7 +44,7 @@ class FeedRecViewAdapter(
         }
 
         if (event.dates != null && event.dates.isNotEmpty()) {
-            holder.datesTextView.text = Date.getDisplayDates(event.dates[0])
+            holder.datesTextView.text = Date.getDisplayDates(event.dates[0].start, event.dates.last().end)
         } else {
             holder.datesLine.visibility = View.GONE
         }

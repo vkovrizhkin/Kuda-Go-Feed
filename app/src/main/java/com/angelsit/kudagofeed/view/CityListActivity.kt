@@ -24,6 +24,9 @@ class CityListActivity : AppCompatActivity() {
 
         cities_toolbar.setNavigationOnClickListener { finish() }
 
+        swipe_to_refresh.setOnRefreshListener { presenter.onUpdate() }
+        swipe_to_refresh.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent ,R.color.colorPrimaryDark)
+
 
     }
 
@@ -33,18 +36,23 @@ class CityListActivity : AppCompatActivity() {
     }
 
     fun showCityList(cityList: List<City>) {
+        if(swipe_to_refresh.isRefreshing){
+            swipe_to_refresh.isRefreshing = false
+        }
         cities_rec_view.layoutManager = LinearLayoutManager(this)
         cities_rec_view.adapter = CityRecViewAdapter(cityList, this, selectCity, currentCity)
         progress_bar.visibility = View.GONE
         cities_rec_view.visibility = View.VISIBLE
 
     }
+    fun showLoading(){
+        progress_bar.visibility = View.VISIBLE
+        cities_rec_view.visibility = View.GONE
+    }
 
     private val selectCity = { city: City ->
         println(city.name)
         val intent = Intent()
-        intent.putExtra("name", city.name)
-        intent.putExtra("slug", city.slug)
         intent.putExtra("city", city)
         setResult(Activity.RESULT_OK, intent)
         finish()

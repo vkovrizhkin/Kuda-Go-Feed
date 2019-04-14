@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.angelsit.kudagofeed.R
+import com.angelsit.kudagofeed.model.event.Date
 import com.angelsit.kudagofeed.model.eventdetails.EventDetails
 import com.angelsit.kudagofeed.presenter.EventDetailsPresenter
 import kotlinx.android.synthetic.main.activity_event_details.*
+import kotlinx.android.synthetic.main.info_block.*
 
 class EventDetailsActivity : AppCompatActivity() {
 
@@ -31,12 +33,15 @@ class EventDetailsActivity : AppCompatActivity() {
 
         eventId = intent.getStringExtra(EVENT_ID_EXTRA)
 
+        swipe_to_refresh.setOnRefreshListener { presenter.onUpdate(eventId!!) }
+        swipe_to_refresh.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent ,R.color.colorPrimaryDark)
+
 
     }
 
     override fun onResume() {
         super.onResume()
-        if(!eventId.isNullOrBlank()){
+        if (!eventId.isNullOrBlank()) {
             presenter.onResume(eventId!!)
         }
 
@@ -44,11 +49,33 @@ class EventDetailsActivity : AppCompatActivity() {
     }
 
     fun showDetails(eventDetails: EventDetails) {
+
         title_text_view.text = eventDetails.title
         desc_text_view.text = eventDetails.description
         short_desc_text_view.text = eventDetails.description
         photosPagerAdapter.setPhotos(eventDetails.images.map { item -> item.image })
 
+        if(swipe_to_refresh.isRefreshing){
+            swipe_to_refresh.isRefreshing = false
+        }
+
+        if (!eventDetails.price.isNullOrBlank()) {
+            price_text_view.text = eventDetails.price
+        } else {
+            price_line.visibility = View.GONE
+        }
+
+        if (eventDetails.place.address.isNotBlank()) {
+            place_text_view.text = eventDetails.place.address
+        } else {
+            address_line.visibility = View.GONE
+        }
+
+        if (eventDetails.dates.isNotEmpty()) {
+            dates_text_view.text = Date.getDisplayDates(eventDetails.dates[0].start, eventDetails.dates.last().end)
+        } else {
+            dates_line.visibility = View.GONE
+        }
 
         progress_bar.visibility = View.GONE
         content.visibility = View.VISIBLE
