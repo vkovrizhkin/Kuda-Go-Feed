@@ -62,7 +62,7 @@ object MockData {
 
     private fun parseEventsFromJsonArray(jsonArray: JSONArray): List<Event> {
         val eventList = mutableListOf<Event>()
-        for (i in 0..(jsonArray.length() - 1)) {
+/*        for (i in 0..(jsonArray.length() - 1)) {
             var place = ""
             if(!jsonArray.getJSONObject(i).isNull("place")){
                 place = jsonArray.getJSONObject(i).getJSONObject("place")?.getString("address")!!
@@ -81,7 +81,7 @@ object MockData {
                 )
             )
 
-        }
+        }*/
 
         return eventList
     }

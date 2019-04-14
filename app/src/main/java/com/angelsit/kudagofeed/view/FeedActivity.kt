@@ -39,15 +39,17 @@ class FeedActivity : AppCompatActivity() {
 
         events_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         events_recycler_view.adapter = FeedRecViewAdapter(eventList, this, eventItemOnClick)
+        progress_bar.visibility = View.GONE
+        events_recycler_view.visibility = View.VISIBLE
 
     }
 
     private val eventItemOnClick = { event: Event ->
 
-        val intent = Intent(this, EventDetailsActivity::class.java)
+/*        val intent = Intent(this, EventDetailsActivity::class.java)
         intent.putExtra("eventId", event.title) // todo поменять на id
         startActivity(intent)
-        println(event.title)
+        println(event.title)*/
     }
 
     private val onChangeCityClick = fun() {

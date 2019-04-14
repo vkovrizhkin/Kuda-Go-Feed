@@ -26,15 +26,20 @@ class FeedRecViewAdapter(
     override fun onBindViewHolder(holder: FeedRecViewAdapter.EventViewHolder, index: Int) {
         val event = eventList[index]
 
+/*
         holder.container.setOnClickListener{callback(event)}
         holder.titleTextView.text = event.title
         holder.descTextView.text = event.shortDescription
         holder.priceTextView.text = event.price
-        holder.placeTextView.text = event.place
-
-        if(!event.imageUrl.isEmpty()){
-            Glide.with(context).load(event.imageUrl).centerCrop().into(holder.imageView)
+        if(event.place!=null){
+            holder.placeTextView.text = event.place.address
         }
+
+
+        if(!event.images.isEmpty()){
+            Glide.with(context).load(event.images[0].image).centerCrop().into(holder.imageView)
+        }
+*/
 
 
     }

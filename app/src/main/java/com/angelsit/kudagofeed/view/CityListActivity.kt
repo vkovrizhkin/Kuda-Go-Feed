@@ -9,7 +9,7 @@ import com.angelsit.kudagofeed.model.City
 import com.angelsit.kudagofeed.presenter.CitiesPresenter
 import kotlinx.android.synthetic.main.activity_city_list.*
 import android.content.Intent
-
+import android.view.View
 
 
 class CityListActivity : AppCompatActivity() {
@@ -22,6 +22,8 @@ class CityListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_city_list)
 
+        cities_toolbar.setNavigationOnClickListener { finish() }
+
 
     }
 
@@ -33,6 +35,8 @@ class CityListActivity : AppCompatActivity() {
     fun showCityList(cityList: List<City>) {
         cities_rec_view.layoutManager = LinearLayoutManager(this)
         cities_rec_view.adapter = CityRecViewAdapter(cityList, this, selectCity, currentCity)
+        progress_bar.visibility = View.GONE
+        cities_rec_view.visibility = View.VISIBLE
 
     }
 

@@ -1,8 +1,6 @@
 package com.angelsit.kudagofeed.model
 
-import com.google.gson.annotations.SerializedName
-
-class Event(
+data class Event2(
     val dates: List<Date>?,
     val description: String?,
     val id: Int,
@@ -10,8 +8,7 @@ class Event(
     val place: Place?,
     val price: String?,
     val title: String
-
-) {
+){
     companion object {
 
         const val fields: String = "dates,title,price,place,images,description,id"
