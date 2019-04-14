@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.angelsit.kudagofeed.R
-import com.angelsit.kudagofeed.model.EventDetails
+import com.angelsit.kudagofeed.model.eventdetails.EventDetails
 import com.angelsit.kudagofeed.presenter.EventDetailsPresenter
 import kotlinx.android.synthetic.main.activity_event_details.*
 
@@ -23,17 +23,23 @@ class EventDetailsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        presenter.onResume("12345")
+        presenter.onResume("60843")
 
     }
 
-    fun showDetails(eventDetails: EventDetails){
+    fun showDetails(eventDetails: EventDetails) {
         title_text_view.text = eventDetails.title
         desc_text_view.text = eventDetails.description
-        short_desc_text_view.text = eventDetails.shortDescription
+        short_desc_text_view.text = eventDetails.description
+        photosPagerAdapter.setPhotos(eventDetails.images.map { item -> item.image })
 
-        photosPagerAdapter.setPhotos(eventDetails.photos)
+
         progress_bar.visibility = View.GONE
+        content.visibility = View.VISIBLE
 
+    }
+    fun showLoading(){
+        content.visibility = View.GONE
+        progress_bar.visibility = View.VISIBLE
     }
 }

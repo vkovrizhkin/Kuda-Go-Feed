@@ -2,6 +2,7 @@ package com.angelsit.kudagofeed.model
 
 import android.content.Context
 import com.angelsit.kudagofeed.model.event.Event
+import com.angelsit.kudagofeed.model.eventdetails.EventDetails
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Exception
@@ -87,7 +88,7 @@ object MockData {
         return eventList
     }
 
-    fun getInfoDetail(): EventDetails{
+/*    fun getInfoDetail(): EventDetails {
         return EventDetails(
             listOf(
                 "https://imgclf.112.ua/original/2018/09/03/357636.jpg?timestamp=1535976988",
@@ -106,6 +107,6 @@ object MockData {
             "15:00 - 15:20, 5 октября"
 
         )
-    }
+    }*/
 
 }

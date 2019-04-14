@@ -16,8 +16,21 @@ class FeedActivity : AppCompatActivity() {
         private const val CITY_REQUEST_CODE = 1
     }
 
+    private val eventItemOnClick = { event: Event ->
+
+        val intent = Intent(this, EventDetailsActivity::class.java)
+        intent.putExtra("eventId", event.title) // todo поменять на id
+        startActivity(intent)
+        println(event.title)
+    }
+
+    private var eventList: MutableList<Event> = mutableListOf()
+
+    var adapter: FeedRecViewAdapter? = null
 
     var selectedCity: City? = null
+    var layoutManager: LinearLayoutManager? = null
+
 
     private val presenter = FeedPresenter(this)
 
@@ -25,6 +38,12 @@ class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
+
+        layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        adapter = FeedRecViewAdapter(eventList, this, eventItemOnClick)
+
+        events_recycler_view.adapter = adapter
+        events_recycler_view.layoutManager = layoutManager
 
         presenter.onCreate()
         change_city_button.setOnClickListener {
@@ -44,24 +63,20 @@ class FeedActivity : AppCompatActivity() {
     }
 
     fun showEvents(eventList: List<Event>) {
+        //this.eventList = eventList as MutableList<Event>
+        this.eventList.clear()
+        this.eventList.addAll(eventList)
 
-        events_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        events_recycler_view.adapter = FeedRecViewAdapter(eventList, this, eventItemOnClick)
+        adapter!!.notifyDataSetChanged()
+
         progress_bar.visibility = View.GONE
         events_recycler_view.visibility = View.VISIBLE
 
     }
-    fun showLoading(){
+
+    fun showLoading() {
         progress_bar.visibility = View.VISIBLE
         events_recycler_view.visibility = View.GONE
-    }
-
-    private val eventItemOnClick = { event: Event ->
-
-        /*        val intent = Intent(this, EventDetailsActivity::class.java)
-                intent.putExtra("eventId", event.title) // todo поменять на id
-                startActivity(intent)
-                println(event.title)*/
     }
 
     private val onChangeCityClick = fun() {
