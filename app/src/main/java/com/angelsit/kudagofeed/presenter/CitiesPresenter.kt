@@ -16,7 +16,5 @@ class CitiesPresenter(private val mView: CityListActivity): MainContract.Present
 
     fun onResume(){
         Api.getCities(this)
-        //mView.showCityList(MockData.getLocations(mView))
-
     }
 }

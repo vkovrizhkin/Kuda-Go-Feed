@@ -12,10 +12,12 @@ import com.angelsit.kudagofeed.presenter.FeedPresenter
 import kotlinx.android.synthetic.main.activity_feed.*
 
 class FeedActivity : AppCompatActivity() {
+    companion object {
+        private const val CITY_REQUEST_CODE = 1
+    }
 
-    private val CITY_REQUEST_CODE = 1
 
-    private var selectedCity = City("msk", "Москва")
+    var selectedCity: City? = null
 
     private val presenter = FeedPresenter(this)
 
@@ -24,10 +26,11 @@ class FeedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
 
+        presenter.onCreate()
         change_city_button.setOnClickListener {
             onChangeCityClick()
         }
-        change_city_button.text = "Москва"
+
     }
 
     override fun onResume() {
@@ -35,7 +38,12 @@ class FeedActivity : AppCompatActivity() {
         presenter.onResume()
     }
 
-    fun showEvents(eventList: List<Event>){
+    fun initSelectedCity(city: City) {
+        selectedCity = city
+        change_city_button.text = city.name
+    }
+
+    fun showEvents(eventList: List<Event>) {
 
         events_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         events_recycler_view.adapter = FeedRecViewAdapter(eventList, this, eventItemOnClick)
@@ -43,13 +51,17 @@ class FeedActivity : AppCompatActivity() {
         events_recycler_view.visibility = View.VISIBLE
 
     }
+    fun showLoading(){
+        progress_bar.visibility = View.VISIBLE
+        events_recycler_view.visibility = View.GONE
+    }
 
     private val eventItemOnClick = { event: Event ->
 
-/*        val intent = Intent(this, EventDetailsActivity::class.java)
-        intent.putExtra("eventId", event.title) // todo поменять на id
-        startActivity(intent)
-        println(event.title)*/
+        /*        val intent = Intent(this, EventDetailsActivity::class.java)
+                intent.putExtra("eventId", event.title) // todo поменять на id
+                startActivity(intent)
+                println(event.title)*/
     }
 
     private val onChangeCityClick = fun() {
@@ -65,7 +77,10 @@ class FeedActivity : AppCompatActivity() {
             CITY_REQUEST_CODE -> {
                 val city = data.getSerializableExtra("city") as City
 
-                presenter.onCitySelected(city)
+                if (city.slug != selectedCity!!.slug) {
+                    presenter.onCitySelected(city)
+                }
+
             }
         }
     }
