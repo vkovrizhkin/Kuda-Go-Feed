@@ -1,6 +1,8 @@
-package com.angelsit.kudagofeed.model
+package com.angelsit.kudagofeed.model.api
 
 import com.angelsit.kudagofeed.MainContract
+import com.angelsit.kudagofeed.model.City
+import com.angelsit.kudagofeed.model.event.EventsResult
 import retrofit2.Callback
 import retrofit2.Call
 import retrofit2.Response
@@ -27,7 +29,7 @@ object Api {
     }
 
     fun getEvents(citySlug: String, listener: MainContract.Presenter.GetEventsListener) {
-        val call = apiManager.getService().getEvents("msk")
+        val call = apiManager.getService().getEvents(citySlug)
         call.enqueue(object : Callback<EventsResult> {
             override fun onFailure(call: Call<EventsResult>, t: Throwable) {
                 //To change body of created functions use File | Settings | File Templates.
@@ -35,8 +37,7 @@ object Api {
 
             override fun onResponse(call: Call<EventsResult>, response: Response<EventsResult>) {
                 val events = response.body()
-                val i = 0
-               // listener.onGetEventsFinish(events!!)
+                listener.onGetEventsFinish(events!!.results)
             }
 
         })

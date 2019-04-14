@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.angelsit.kudagofeed.R
 import com.angelsit.kudagofeed.model.City
-import com.angelsit.kudagofeed.model.Event
+import com.angelsit.kudagofeed.model.event.Event
 import com.angelsit.kudagofeed.presenter.FeedPresenter
 import kotlinx.android.synthetic.main.activity_feed.*
 

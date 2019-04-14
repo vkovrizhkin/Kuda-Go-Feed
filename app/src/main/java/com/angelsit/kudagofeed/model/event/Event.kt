@@ -1,6 +1,4 @@
-package com.angelsit.kudagofeed.model
-
-import com.google.gson.annotations.SerializedName
+package com.angelsit.kudagofeed.model.event
 
 class Event(
     val dates: List<Date>?,

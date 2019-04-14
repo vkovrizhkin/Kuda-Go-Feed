@@ -1,7 +1,7 @@
 package com.angelsit.kudagofeed
 
 import com.angelsit.kudagofeed.model.City
-import com.angelsit.kudagofeed.model.Event
+import com.angelsit.kudagofeed.model.event.Event
 import com.angelsit.kudagofeed.model.EventDetails
 
 interface MainContract {

@@ -6,6 +6,7 @@
               style="@style/item_info_container">
 
         <LinearLayout
+                android:id="@+id/address_line"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -23,6 +24,7 @@
         </LinearLayout>
 
         <LinearLayout
+                android:id="@+id/dates_line"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -40,6 +42,7 @@
         </LinearLayout>
 
         <LinearLayout
+                android:id="@+id/price_line"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

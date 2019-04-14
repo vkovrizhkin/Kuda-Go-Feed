@@ -1,9 +1,8 @@
 package com.angelsit.kudagofeed.presenter
 
 import com.angelsit.kudagofeed.MainContract
-import com.angelsit.kudagofeed.model.Api
+import com.angelsit.kudagofeed.model.api.Api
 import com.angelsit.kudagofeed.model.City
-import com.angelsit.kudagofeed.model.MockData
 import com.angelsit.kudagofeed.view.CityListActivity
 
 class CitiesPresenter(private val mView: CityListActivity): MainContract.Presenter.GetCitiesListener {

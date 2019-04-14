@@ -1,10 +1,9 @@
 package com.angelsit.kudagofeed.presenter
 
 import com.angelsit.kudagofeed.MainContract
-import com.angelsit.kudagofeed.model.Api
+import com.angelsit.kudagofeed.model.api.Api
 import com.angelsit.kudagofeed.model.City
-import com.angelsit.kudagofeed.model.Event
-import com.angelsit.kudagofeed.model.MockData
+import com.angelsit.kudagofeed.model.event.Event
 import com.angelsit.kudagofeed.view.FeedActivity
 
 class FeedPresenter (private val mView: FeedActivity): MainContract.Presenter.GetEventsListener {
@@ -13,7 +12,7 @@ class FeedPresenter (private val mView: FeedActivity): MainContract.Presenter.Ge
     }
 
     override fun onGetEventsFailed(t: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //To change body of created functions use File | Settings | File Templates.
     }
 
     fun onCitySelected(city: City){
@@ -21,7 +20,7 @@ class FeedPresenter (private val mView: FeedActivity): MainContract.Presenter.Ge
     }
 
     fun onResume(){
-        val eventList = MockData.getEvents(mView)
+        //val eventList = MockData.getEvents(mView)
         Api.getEvents("msk", this)
     }
 }

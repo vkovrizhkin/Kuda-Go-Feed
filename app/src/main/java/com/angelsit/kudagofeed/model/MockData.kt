@@ -1,6 +1,7 @@
 package com.angelsit.kudagofeed.model
 
 import android.content.Context
+import com.angelsit.kudagofeed.model.event.Event
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Exception
