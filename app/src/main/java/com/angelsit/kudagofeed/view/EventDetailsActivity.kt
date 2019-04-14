@@ -10,8 +10,15 @@ import kotlinx.android.synthetic.main.activity_event_details.*
 
 class EventDetailsActivity : AppCompatActivity() {
 
+    companion object {
+        const val EVENT_ID_EXTRA = "EVENT_ID_EXTRA"
+    }
+
     private val photosPagerAdapter = PhotosViewPagerAdapter()
+
     private val presenter = EventDetailsPresenter(this)
+
+    var eventId: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,11 +26,20 @@ class EventDetailsActivity : AppCompatActivity() {
 
         photos_view_pager.adapter = photosPagerAdapter
         pager_indicator.setViewPager(photos_view_pager)
+
+        back_button.setOnClickListener { finish() }
+
+        eventId = intent.getStringExtra(EVENT_ID_EXTRA)
+
+
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.onResume("60843")
+        if(!eventId.isNullOrBlank()){
+            presenter.onResume(eventId!!)
+        }
+
 
     }
 
@@ -38,7 +54,8 @@ class EventDetailsActivity : AppCompatActivity() {
         content.visibility = View.VISIBLE
 
     }
-    fun showLoading(){
+
+    fun showLoading() {
         content.visibility = View.GONE
         progress_bar.visibility = View.VISIBLE
     }

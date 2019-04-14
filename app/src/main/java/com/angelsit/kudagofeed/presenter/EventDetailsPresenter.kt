@@ -16,8 +16,7 @@ class EventDetailsPresenter(private val mView: EventDetailsActivity): MainContra
     }
 
     fun onResume(eventId: String){
-        /*val result = MockData.getInfoDetail()
-        mView.showDetails(result)*/
+
         mView.showLoading()
         Api.getEventDetails(eventId, this)
     }

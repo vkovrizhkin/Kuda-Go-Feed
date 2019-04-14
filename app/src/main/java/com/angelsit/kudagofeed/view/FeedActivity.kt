@@ -19,9 +19,8 @@ class FeedActivity : AppCompatActivity() {
     private val eventItemOnClick = { event: Event ->
 
         val intent = Intent(this, EventDetailsActivity::class.java)
-        intent.putExtra("eventId", event.title) // todo поменять на id
+        intent.putExtra(EventDetailsActivity.EVENT_ID_EXTRA, event.id.toString())
         startActivity(intent)
-        println(event.title)
     }
 
     private var eventList: MutableList<Event> = mutableListOf()
