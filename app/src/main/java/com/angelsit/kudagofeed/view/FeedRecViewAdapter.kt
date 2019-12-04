@@ -1,7 +1,7 @@
 package com.angelsit.kudagofeed.view
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +16,7 @@ class FeedRecViewAdapter(
     private val eventList: List<Event>,
     private val context: Context,
     private val callback: (Event) -> Unit
-) : RecyclerView.Adapter<FeedRecViewAdapter.EventViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<FeedRecViewAdapter.EventViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): FeedRecViewAdapter.EventViewHolder {
         val layout = LayoutInflater.from(context).inflate(R.layout.event_list_item, p0, false) as View
         return EventViewHolder(layout)
@@ -57,7 +57,7 @@ class FeedRecViewAdapter(
 
     }
 
-    class EventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class EventViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         val container = view
         val imageView = view.event_image_view!!
         val titleTextView = view.title_text_view!!

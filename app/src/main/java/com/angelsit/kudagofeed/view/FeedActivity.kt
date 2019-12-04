@@ -1,9 +1,9 @@
 package com.angelsit.kudagofeed.view
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.angelsit.kudagofeed.R
 import com.angelsit.kudagofeed.model.City
@@ -28,7 +28,7 @@ class FeedActivity : AppCompatActivity() {
     var adapter: FeedRecViewAdapter? = null
 
     var selectedCity: City? = null
-    var layoutManager: LinearLayoutManager? = null
+    var layoutManager: androidx.recyclerview.widget.LinearLayoutManager? = null
 
 
     private val presenter = FeedPresenter(this)
@@ -38,7 +38,11 @@ class FeedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
 
-        layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         adapter = FeedRecViewAdapter(eventList, this, eventItemOnClick)
 
         events_recycler_view.adapter = adapter

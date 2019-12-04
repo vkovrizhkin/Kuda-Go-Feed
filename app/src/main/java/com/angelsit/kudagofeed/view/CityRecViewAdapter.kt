@@ -1,7 +1,7 @@
 package com.angelsit.kudagofeed.view
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ class CityRecViewAdapter    (
     val context: Context,
     val callback: (City) -> Unit,
     private val selectedCity: City
-) : RecyclerView.Adapter<CityRecViewAdapter.CityViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<CityRecViewAdapter.CityViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CityViewHolder {
         val layout = LayoutInflater.from(p0.context).inflate(R.layout.city_list_item, p0, false) as View
 
@@ -34,7 +34,7 @@ class CityRecViewAdapter    (
         holder.container.setOnClickListener { callback(city)}
     }
 
-    class CityViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class CityViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         val container = view
         val nameTextView = view.city_name!!
         val selectedIcon = view.city_selected!!

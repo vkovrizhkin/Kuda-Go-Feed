@@ -1,9 +1,9 @@
 package com.angelsit.kudagofeed.view
 
 import android.app.Activity
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelsit.kudagofeed.R
 import com.angelsit.kudagofeed.model.City
 import com.angelsit.kudagofeed.presenter.CitiesPresenter
@@ -39,7 +39,7 @@ class CityListActivity : AppCompatActivity() {
         if(swipe_to_refresh.isRefreshing){
             swipe_to_refresh.isRefreshing = false
         }
-        cities_rec_view.layoutManager = LinearLayoutManager(this)
+        cities_rec_view.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         cities_rec_view.adapter = CityRecViewAdapter(cityList, this, selectCity, currentCity)
         progress_bar.visibility = View.GONE
         cities_rec_view.visibility = View.VISIBLE

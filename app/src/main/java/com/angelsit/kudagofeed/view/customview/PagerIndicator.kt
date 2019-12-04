@@ -2,8 +2,8 @@ package com.angelsit.kudagofeed.view.customview
 
 import android.content.Context
 import android.database.DataSetObserver
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.LinearLayout
@@ -14,10 +14,10 @@ class PagerIndicator @JvmOverloads constructor(
         attributeSet: AttributeSet? = null,
         defStyleAttr: Int = 0
 ) : LinearLayout(context, attributeSet, defStyleAttr),
-        ViewPager.OnAdapterChangeListener,
-        ViewPager.OnPageChangeListener {
+        androidx.viewpager.widget.ViewPager.OnAdapterChangeListener,
+        androidx.viewpager.widget.ViewPager.OnPageChangeListener {
 
-    private var viewPager: ViewPager? = null
+    private var viewPager: androidx.viewpager.widget.ViewPager? = null
     private val indicatorSize = context.resources.getDimensionPixelSize(R.dimen.indicator_size)
     private val indicatorMargin = context.resources.getDimensionPixelSize(R.dimen.indicator_margin)
     private var dataSetObserver: DataSetObserver? = null
@@ -26,7 +26,7 @@ class PagerIndicator @JvmOverloads constructor(
         gravity = Gravity.CENTER
     }
 
-    fun setViewPager(viewPager: ViewPager) {
+    fun setViewPager(viewPager: androidx.viewpager.widget.ViewPager) {
         this.viewPager = viewPager
         this.viewPager?.addOnAdapterChangeListener(this)
         this.viewPager?.addOnPageChangeListener(this)
@@ -56,7 +56,7 @@ class PagerIndicator @JvmOverloads constructor(
             .forEachIndexed { index, indicator -> indicator.selectIndicator = index == position }*/
     }
 
-    override fun onAdapterChanged(p0: ViewPager, p1: PagerAdapter?, p2: PagerAdapter?) {
+    override fun onAdapterChanged(p0: androidx.viewpager.widget.ViewPager, p1: androidx.viewpager.widget.PagerAdapter?, p2: androidx.viewpager.widget.PagerAdapter?) {
         unRegisterSetObserver()
         registerSetObserver()
         inflateIndicators()
