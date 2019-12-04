@@ -1,4 +1,4 @@
-package com.angelsit.kudagofeed.model.api
+package com.angelsit.data.sources.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

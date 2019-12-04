@@ -1,8 +1,7 @@
 package com.angelsit.kudagofeed.presenter
 
 import com.angelsit.kudagofeed.MainContract
-import com.angelsit.kudagofeed.model.MockData
-import com.angelsit.kudagofeed.model.api.Api
+import com.angelsit.data.sources.api.Api
 import com.angelsit.kudagofeed.model.eventdetails.EventDetails
 import com.angelsit.kudagofeed.view.EventDetailsActivity
 

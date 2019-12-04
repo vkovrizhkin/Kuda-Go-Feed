@@ -1,4 +1,4 @@
-package com.angelsit.kudagofeed.model.api
+package com.angelsit.data.sources.api
 
 import com.angelsit.kudagofeed.model.City
 import com.angelsit.kudagofeed.model.event.Event
