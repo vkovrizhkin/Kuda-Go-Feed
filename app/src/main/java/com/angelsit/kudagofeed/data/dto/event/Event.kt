@@ -1,4 +1,4 @@
-package com.angelsit.kudagofeed.model.event
+package com.angelsit.kudagofeed.data.dto.event
 
 class Event(
     val dates: List<Date>?,

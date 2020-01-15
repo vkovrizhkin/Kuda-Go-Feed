@@ -1,9 +1,8 @@
 package com.angelsit.kudagofeed.presenter
 
 import com.angelsit.kudagofeed.MainContract
-import com.angelsit.kudagofeed.model.MockData
-import com.angelsit.kudagofeed.model.api.Api
-import com.angelsit.kudagofeed.model.eventdetails.EventDetails
+import com.angelsit.kudagofeed.data.api.Api
+import com.angelsit.kudagofeed.data.dto.eventdetails.EventDetails
 import com.angelsit.kudagofeed.view.EventDetailsActivity
 
 class EventDetailsPresenter(private val mView: EventDetailsActivity): MainContract.Presenter.GetEventDetailsListener {

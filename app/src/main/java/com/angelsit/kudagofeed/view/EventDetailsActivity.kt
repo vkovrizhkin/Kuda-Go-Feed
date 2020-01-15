@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.angelsit.kudagofeed.R
-import com.angelsit.kudagofeed.model.event.Date
-import com.angelsit.kudagofeed.model.eventdetails.EventDetails
+import com.angelsit.kudagofeed.data.dto.event.Date
+import com.angelsit.kudagofeed.data.dto.eventdetails.EventDetails
 import com.angelsit.kudagofeed.presenter.EventDetailsPresenter
 import kotlinx.android.synthetic.main.activity_event_details.*
 import kotlinx.android.synthetic.main.info_block.*

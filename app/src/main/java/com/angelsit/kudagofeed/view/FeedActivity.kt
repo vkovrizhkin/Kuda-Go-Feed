@@ -3,11 +3,10 @@ package com.angelsit.kudagofeed.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.angelsit.kudagofeed.R
-import com.angelsit.kudagofeed.model.City
-import com.angelsit.kudagofeed.model.event.Event
+import com.angelsit.kudagofeed.data.dto.City
+import com.angelsit.kudagofeed.data.dto.event.Event
 import com.angelsit.kudagofeed.presenter.FeedPresenter
 import kotlinx.android.synthetic.main.activity_feed.*
 

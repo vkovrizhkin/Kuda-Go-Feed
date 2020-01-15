@@ -3,9 +3,8 @@ package com.angelsit.kudagofeed.view
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelsit.kudagofeed.R
-import com.angelsit.kudagofeed.model.City
+import com.angelsit.kudagofeed.data.dto.City
 import com.angelsit.kudagofeed.presenter.CitiesPresenter
 import kotlinx.android.synthetic.main.activity_city_list.*
 import android.content.Intent

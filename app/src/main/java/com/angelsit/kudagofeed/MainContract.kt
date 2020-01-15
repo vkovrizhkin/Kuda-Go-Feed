@@ -1,8 +1,8 @@
 package com.angelsit.kudagofeed
 
-import com.angelsit.kudagofeed.model.City
-import com.angelsit.kudagofeed.model.event.Event
-import com.angelsit.kudagofeed.model.eventdetails.EventDetails
+import com.angelsit.kudagofeed.data.dto.City
+import com.angelsit.kudagofeed.data.dto.event.Event
+import com.angelsit.kudagofeed.data.dto.eventdetails.EventDetails
 
 interface MainContract {
     interface View{

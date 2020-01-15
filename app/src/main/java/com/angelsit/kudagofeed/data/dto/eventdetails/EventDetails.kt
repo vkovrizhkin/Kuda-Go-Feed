@@ -1,8 +1,8 @@
-package com.angelsit.kudagofeed.model.eventdetails
+package com.angelsit.kudagofeed.data.dto.eventdetails
 
-import com.angelsit.kudagofeed.model.event.Date
-import com.angelsit.kudagofeed.model.event.Image
-import com.angelsit.kudagofeed.model.event.Place
+import com.angelsit.kudagofeed.data.dto.event.Date
+import com.angelsit.kudagofeed.data.dto.event.Image
+import com.angelsit.kudagofeed.data.dto.event.Place
 
 data class EventDetails(
     val age_restriction: String,

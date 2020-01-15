@@ -1,13 +1,15 @@
 package com.angelsit.kudagofeed.presenter
 
 import com.angelsit.kudagofeed.MainContract
-import com.angelsit.kudagofeed.model.api.Api
-import com.angelsit.kudagofeed.model.City
-import com.angelsit.kudagofeed.model.event.Event
-import com.angelsit.kudagofeed.model.sharedpreference.SharedPreferenceManager
+import com.angelsit.kudagofeed.data.api.Api
+import com.angelsit.kudagofeed.data.dto.City
+import com.angelsit.kudagofeed.data.dto.event.Event
+import com.angelsit.kudagofeed.data.sharedpreference.SharedPreferenceManager
+import com.angelsit.kudagofeed.repo.EventsRepo
 import com.angelsit.kudagofeed.view.FeedActivity
 
 class FeedPresenter(private val mView: FeedActivity) : MainContract.Presenter.GetEventsListener {
+
     override fun onGetEventsFinish(result: List<Event>) {
         mView.showEvents(result)
     }
@@ -20,15 +22,16 @@ class FeedPresenter(private val mView: FeedActivity) : MainContract.Presenter.Ge
         mView.showLoading()
         SharedPreferenceManager.saveSelectedCity(mView, city)
         mView.updateSelectedCity(city)
-        Api.getEvents(city.slug, this)
+        EventsRepo.getEvents(city.slug, this)
     }
 
     fun onResume() {
         mView.showLoading()
-        Api.getEvents(mView.selectedCity!!.slug, this)
+        EventsRepo.getEvents(mView.selectedCity!!.slug, this)
     }
+
     fun onUpdate() {
-        Api.getEvents(mView.selectedCity!!.slug, this)
+        EventsRepo.getEvents(mView.selectedCity!!.slug, this)
     }
 
     fun onCreate() {

@@ -1,7 +1,7 @@
-package com.angelsit.kudagofeed.model.sharedpreference
+package com.angelsit.kudagofeed.data.sharedpreference
 
 import android.content.Context
-import com.angelsit.kudagofeed.model.City
+import com.angelsit.kudagofeed.data.dto.City
 import com.google.gson.Gson
 
 class SharedPreferenceManager {

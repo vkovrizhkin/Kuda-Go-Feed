@@ -1,12 +1,11 @@
 package com.angelsit.kudagofeed.view
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.angelsit.kudagofeed.R
-import com.angelsit.kudagofeed.model.City
+import com.angelsit.kudagofeed.data.dto.City
 import kotlinx.android.synthetic.main.city_list_item.view.*
 
 class CityRecViewAdapter    (

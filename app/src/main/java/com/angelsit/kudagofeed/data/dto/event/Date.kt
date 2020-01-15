@@ -1,4 +1,4 @@
-package com.angelsit.kudagofeed.model.event
+package com.angelsit.kudagofeed.data.dto.event
 
 import java.text.SimpleDateFormat
 import java.util.*

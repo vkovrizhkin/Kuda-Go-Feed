@@ -1,9 +1,9 @@
-package com.angelsit.kudagofeed.model.api
+package com.angelsit.kudagofeed.data.api
 
 import com.angelsit.kudagofeed.MainContract
-import com.angelsit.kudagofeed.model.City
-import com.angelsit.kudagofeed.model.event.EventsResult
-import com.angelsit.kudagofeed.model.eventdetails.EventDetails
+import com.angelsit.kudagofeed.data.dto.City
+import com.angelsit.kudagofeed.data.dto.event.EventsResult
+import com.angelsit.kudagofeed.data.dto.eventdetails.EventDetails
 import retrofit2.Callback
 import retrofit2.Call
 import retrofit2.Response
