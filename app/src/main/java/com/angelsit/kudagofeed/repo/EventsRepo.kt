@@ -73,6 +73,7 @@ object EventsRepo {
                     cursor.getString(cursor.getColumnIndex("avatar"))
                 )
                 result.add(event)
+                cursor.moveToNext()
             }
         }
 

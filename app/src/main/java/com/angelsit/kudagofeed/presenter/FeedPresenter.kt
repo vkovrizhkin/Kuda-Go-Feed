@@ -29,7 +29,7 @@ class FeedPresenter(private val mView: FeedActivity) : MainContract.Presenter.Ge
         mView.showLoading()
         SharedPreferenceManager.saveSelectedCity(mView, city)
         mView.updateSelectedCity(city)
-        EventsRepo.getEvents(city.slug)
+        getEvents()
     }
 
     private fun getEvents(city: String = "msk") {

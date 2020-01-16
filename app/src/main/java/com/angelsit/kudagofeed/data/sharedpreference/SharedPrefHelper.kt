@@ -8,7 +8,7 @@ object SharedPrefHelper {
 
     private fun getPrefs() = App.getAppContext().getSharedPreferences(EVENT_PREF, 0)
 
-    fun putBoolean(key: String, value: Boolean) = getPrefs().edit().putBoolean(key, value)
+    fun putBoolean(key: String, value: Boolean) = getPrefs().edit().putBoolean(key, value).apply()
 
     fun getBoolean(key: String, defaultValue: Boolean = false) =
         getPrefs().getBoolean(key, defaultValue)

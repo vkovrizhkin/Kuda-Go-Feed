@@ -14,7 +14,7 @@ data class EventDetails(
     val images: List<Image>,
     val is_free: Boolean,
     val participants: List<Any>,
-    val place: Place,
+    val place: Place?,
     val price: String,
     val publication_date: Int,
     val short_title: String,

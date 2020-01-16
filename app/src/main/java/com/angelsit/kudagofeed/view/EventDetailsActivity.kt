@@ -34,7 +34,11 @@ class EventDetailsActivity : AppCompatActivity() {
         eventId = intent.getStringExtra(EVENT_ID_EXTRA)
 
         swipe_to_refresh.setOnRefreshListener { presenter.onUpdate(eventId!!) }
-        swipe_to_refresh.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent ,R.color.colorPrimaryDark)
+        swipe_to_refresh.setColorSchemeResources(
+            R.color.colorPrimary,
+            R.color.colorAccent,
+            R.color.colorPrimaryDark
+        )
 
 
     }
@@ -55,7 +59,7 @@ class EventDetailsActivity : AppCompatActivity() {
         short_desc_text_view.text = eventDetails.description
         photosPagerAdapter.setPhotos(eventDetails.images.map { item -> item.image })
 
-        if(swipe_to_refresh.isRefreshing){
+        if (swipe_to_refresh.isRefreshing) {
             swipe_to_refresh.isRefreshing = false
         }
 
@@ -65,14 +69,17 @@ class EventDetailsActivity : AppCompatActivity() {
             price_line.visibility = View.GONE
         }
 
-        if (eventDetails.place.address.isNotBlank()) {
-            place_text_view.text = eventDetails.place.address
-        } else {
-            address_line.visibility = View.GONE
+        eventDetails.place?.let {
+            if (it.address.isNotBlank()) {
+                place_text_view.text = eventDetails.place.address
+            } else {
+                address_line.visibility = View.GONE
+            }
         }
 
-        if (eventDetails.dates.isNotEmpty()) {
-            dates_text_view.text = Date.getDisplayDates(eventDetails.dates[0].start, eventDetails.dates.last().end)
+        if (eventDetails.dates.isEmpty()) {
+            dates_text_view.text =
+                Date.getDisplayDates(eventDetails.dates[0].start, eventDetails.dates.last().end)
         } else {
             dates_line.visibility = View.GONE
         }
