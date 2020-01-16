@@ -8,6 +8,7 @@ import com.angelsit.kudagofeed.R
 import com.angelsit.kudagofeed.data.dto.City
 import com.angelsit.kudagofeed.data.dto.event.Event
 import com.angelsit.kudagofeed.presenter.FeedPresenter
+import com.angelsit.kudagofeed.repo.EventsRepo
 import kotlinx.android.synthetic.main.activity_feed.*
 
 class FeedActivity : AppCompatActivity() {
@@ -15,14 +16,14 @@ class FeedActivity : AppCompatActivity() {
         private const val CITY_REQUEST_CODE = 1
     }
 
-    private val eventItemOnClick = { event: Event ->
+    private val eventItemOnClick = { event: EventsRepo.EventPreviewEntity ->
 
         val intent = Intent(this, EventDetailsActivity::class.java)
         intent.putExtra(EventDetailsActivity.EVENT_ID_EXTRA, event.id.toString())
         startActivity(intent)
     }
 
-    private var eventList: MutableList<Event> = mutableListOf()
+    private var eventList: MutableList<EventsRepo.EventPreviewEntity> = mutableListOf()
 
     var adapter: FeedRecViewAdapter? = null
 
@@ -52,7 +53,11 @@ class FeedActivity : AppCompatActivity() {
             onChangeCityClick()
         }
         swipe_to_refresh.setOnRefreshListener { presenter.onUpdate() }
-        swipe_to_refresh.setColorSchemeResources(R.color.colorPrimary,R.color.colorAccent ,R.color.colorPrimaryDark)
+        swipe_to_refresh.setColorSchemeResources(
+            R.color.colorPrimary,
+            R.color.colorAccent,
+            R.color.colorPrimaryDark
+        )
 
     }
 
@@ -66,9 +71,9 @@ class FeedActivity : AppCompatActivity() {
         change_city_button.text = city.name
     }
 
-    fun showEvents(eventList: List<Event>) {
+    fun showEvents(eventList: List<EventsRepo.EventPreviewEntity>) {
         //this.eventList = eventList as MutableList<Event>
-        if(swipe_to_refresh.isRefreshing){
+        if (swipe_to_refresh.isRefreshing) {
             swipe_to_refresh.isRefreshing = false
         }
         this.eventList.clear()

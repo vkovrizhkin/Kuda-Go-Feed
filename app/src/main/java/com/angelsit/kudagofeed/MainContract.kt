@@ -3,6 +3,7 @@ package com.angelsit.kudagofeed
 import com.angelsit.kudagofeed.data.dto.City
 import com.angelsit.kudagofeed.data.dto.event.Event
 import com.angelsit.kudagofeed.data.dto.eventdetails.EventDetails
+import com.angelsit.kudagofeed.repo.EventsRepo
 
 interface MainContract {
     interface View{
@@ -19,7 +20,7 @@ interface MainContract {
             fun onGetCityFailed(t: Throwable)
         }
         interface GetEventsListener{
-            fun onGetEventsFinish(result: List<Event>)
+            fun onGetEventsFinish(result: List<EventsRepo.EventPreviewEntity>)
             fun onGetEventsFailed(t: Throwable)
         }
         interface GetEventDetailsListener{

@@ -4,6 +4,7 @@ import com.angelsit.kudagofeed.MainContract
 import com.angelsit.kudagofeed.data.dto.City
 import com.angelsit.kudagofeed.data.dto.event.EventsResult
 import com.angelsit.kudagofeed.data.dto.eventdetails.EventDetails
+import io.reactivex.Single
 import retrofit2.Callback
 import retrofit2.Call
 import retrofit2.Response
@@ -29,21 +30,8 @@ object Api {
 
     }
 
-    fun getEvents(citySlug: String, listener: MainContract.Presenter.GetEventsListener) {
-        val call = apiManager.getService().getEvents(citySlug)
-        call.enqueue(object : Callback<EventsResult> {
-            override fun onFailure(call: Call<EventsResult>, t: Throwable) {
-                //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onResponse(call: Call<EventsResult>, response: Response<EventsResult>) {
-                val events = response.body()
-                listener.onGetEventsFinish(events!!.results)
-            }
-
-        })
-
-    }
+    fun getEvents(citySlug: String): Single<EventsResult>  =
+        apiManager.getService().getEvents(citySlug)
 
     fun getEventDetails(eventId: String, listener: MainContract.Presenter.GetEventDetailsListener) {
         val call = apiManager.getService().getEventDetails(eventId)

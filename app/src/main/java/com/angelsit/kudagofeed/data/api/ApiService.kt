@@ -4,6 +4,7 @@ import com.angelsit.kudagofeed.data.dto.City
 import com.angelsit.kudagofeed.data.dto.event.Event
 import com.angelsit.kudagofeed.data.dto.event.EventsResult
 import com.angelsit.kudagofeed.data.dto.eventdetails.EventDetails
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -21,8 +22,7 @@ interface ApiService {
         @Query("fields") fields: String = Event.fields,
         @Query("expand") expand: String = Event.expand,
         @Query("text_format") text_format: String = Event.textFormat
-
-    ): Call<EventsResult>
+    ): Single<EventsResult>
 
 
     @GET("events/{id}")

@@ -5,7 +5,8 @@ import com.angelsit.kudagofeed.data.api.Api
 import com.angelsit.kudagofeed.data.dto.eventdetails.EventDetails
 import com.angelsit.kudagofeed.view.EventDetailsActivity
 
-class EventDetailsPresenter(private val mView: EventDetailsActivity): MainContract.Presenter.GetEventDetailsListener {
+class EventDetailsPresenter(private val mView: EventDetailsActivity) :
+    MainContract.Presenter.GetEventDetailsListener {
     override fun onGetEventDetailsFinish(result: EventDetails) {
         mView.showDetails(result)
     }
@@ -14,12 +15,13 @@ class EventDetailsPresenter(private val mView: EventDetailsActivity): MainContra
         //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun onResume(eventId: String){
+    fun onResume(eventId: String) {
 
         mView.showLoading()
         Api.getEventDetails(eventId, this)
     }
-    fun onUpdate(eventId: String){
+
+    fun onUpdate(eventId: String) {
 
         Api.getEventDetails(eventId, this)
     }

@@ -2,12 +2,15 @@ package com.angelsit.kudagofeed.data.sharedpreference
 
 import android.content.Context
 import com.angelsit.kudagofeed.data.dto.City
+import com.angelsit.kudagofeed.data.sharedpreference.SharedPrefHelper.getBoolean
+import com.angelsit.kudagofeed.data.sharedpreference.SharedPrefHelper.putBoolean
 import com.google.gson.Gson
 
 class SharedPreferenceManager {
     companion object {
 
         private const val SELECTED_CITY = "SELECTED_CITY"
+        private const val DATA_WAS_FETCHED = "DATA_WAS_FETCHED"
 
         private val defaultCity = City("msk", "Москва")
 
@@ -35,5 +38,7 @@ class SharedPreferenceManager {
 
 
         }
+        fun setDataWasFetched() = putBoolean(DATA_WAS_FETCHED, true)
+        fun getDataWasFetched() = getBoolean(DATA_WAS_FETCHED)
     }
 }
