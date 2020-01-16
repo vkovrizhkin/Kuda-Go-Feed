@@ -12,7 +12,9 @@ import android.net.Uri
 class EventsProvider : ContentProvider() {
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
+
         val rowId = db!!.insert(TABLE_NAME, "", values)
+
         if (rowId > 0) {
             val _uri = ContentUris.withAppendedId(CONTENT_URI, rowId)
             context?.contentResolver?.notifyChange(_uri, null)
@@ -49,7 +51,7 @@ class EventsProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         val dbHelper = DatabaseHelper(context!!)
-        val db = dbHelper.writableDatabase
+        db = dbHelper.writableDatabase
         return (db != null)
     }
 
@@ -100,19 +102,24 @@ class EventsProvider : ContentProvider() {
     }
 
     companion object {
-        const val PROVIDER_NAME = "com.angelsit.kudagofeed.data.contentprovider.EventsProvider"
-        const val URL = "content://$PROVIDER_NAME/events"
+        private const val PROVIDER_NAME =
+            "com.angelsit.kudagofeed.data.contentprovider.EventsProvider"
+        private const val URL = "content://$PROVIDER_NAME/events"
         val CONTENT_URI = Uri.parse(URL)
 
         val id = "id"
-        val name = "name"
+        val title = "title"
+        val description = "description"
+        val avatar = "avatar"
         val uriCode = 1
 
-        private val db: SQLiteDatabase? = null
-        val DATABASE_NAME = "EventsDB"
-        val TABLE_NAME = "Events"
-        val DATABASE_VERSION = 1
-        val CREATE_DB_TABLE = (" CREATE TABLE " + TABLE_NAME
+        @JvmStatic
+        private var db: SQLiteDatabase? = null
+
+        const val DATABASE_NAME = "EventsDB"
+        const val TABLE_NAME = "Events"
+        const val DATABASE_VERSION = 1
+        const val CREATE_DB_TABLE = (" CREATE TABLE " + TABLE_NAME
                 + " (id INTEGER PRIMARY KEY, "
                 + " title TEXT," +
                 "description TEXT," +
