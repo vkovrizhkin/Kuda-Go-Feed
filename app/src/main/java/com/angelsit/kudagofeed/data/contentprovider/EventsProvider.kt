@@ -1,22 +1,23 @@
 package com.angelsit.kudagofeed.data.contentprovider
 
-import android.content.ContentProvider
-import android.content.ContentValues
-import android.content.Context
+import android.content.*
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
+import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
-import android.content.UriMatcher
-import java.lang.IllegalArgumentException
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 class EventsProvider : ContentProvider() {
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val rowId = db!!.insert(TABLE_NAME, "", values)
+        if (rowId > 0) {
+            val _uri = ContentUris.withAppendedId(CONTENT_URI, rowId)
+            context?.contentResolver?.notifyChange(_uri, null)
+            return _uri
+        } else throw SQLiteException("Failed to a record into $uri")
     }
 
     override fun query(
@@ -43,7 +44,6 @@ class EventsProvider : ContentProvider() {
             null,
             null,
             mSortOrder
-
         )
     }
 
@@ -59,15 +59,31 @@ class EventsProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<String>?
     ): Int {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var count = 0
+        when (uriMatcher.match(uri)) {
+            uriCode ->
+                count = db!!.update(TABLE_NAME, values, selection, selectionArgs)
+            else -> throw IllegalArgumentException("Unknown URI $uri")
+        }
+        context!!.contentResolver.notifyChange(uri, null)
+        return count
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var count = 0
+        when (uriMatcher.match(uri)) {
+            uriCode -> count = db!!.delete(TABLE_NAME, selection, selectionArgs)
+            else -> throw IllegalArgumentException("Unknown URI $uri")
+        }
+        context!!.contentResolver.notifyChange(uri, null)
+        return count
     }
 
     override fun getType(uri: Uri): String? {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when (uriMatcher.match(uri)) {
+            uriCode -> return "vnd.android.cursor.dir/events"
+            else -> throw IllegalArgumentException("Unsupported URI $uri")
+        }
     }
 
     private class DatabaseHelper internal constructor(context: Context) :
@@ -97,15 +113,15 @@ class EventsProvider : ContentProvider() {
         val TABLE_NAME = "Events"
         val DATABASE_VERSION = 1
         val CREATE_DB_TABLE = (" CREATE TABLE " + TABLE_NAME
-                + " (id INTEGER, "
+                + " (id INTEGER PRIMARY KEY, "
                 + " title TEXT," +
                 "description TEXT," +
                 "avatar TEXT);")
 
         private val values: HashMap<String, String>? = null
         val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(PROVIDER_NAME, "users", uriCode)
-            addURI(PROVIDER_NAME, "users/*", uriCode)
+            addURI(PROVIDER_NAME, "events", uriCode)
+            addURI(PROVIDER_NAME, "events/*", uriCode)
         }
     }
 
