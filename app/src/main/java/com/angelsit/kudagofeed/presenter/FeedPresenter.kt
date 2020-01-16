@@ -10,12 +10,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
+/**
+ * расширение чтобы [Disposable] сразу добавлять в [CompositeDisposable]
+ */
 fun Disposable.addTo(disposables: CompositeDisposable) = disposables.add(this)
 
 class FeedPresenter(private val mView: FeedActivity) : MainContract.Presenter.GetEventsListener {
 
     private val disposables = CompositeDisposable()
-
 
     override fun onGetEventsFinish(result: List<EventsRepo.EventPreviewEntity>) {
         mView.showEvents(result)
@@ -32,10 +34,13 @@ class FeedPresenter(private val mView: FeedActivity) : MainContract.Presenter.Ge
         getEvents()
     }
 
+    /**
+     * выбор городов есть, но по дефолту всегда москва
+     */
     private fun getEvents(city: String = "msk") {
         EventsRepo.getEvents(city)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io()) // действия идут в фоновом потоке
+            .observeOn(AndroidSchedulers.mainThread()) //наблюдается из главного потока
             .subscribe(
                 {
                     onGetEventsFinish(it)
@@ -60,6 +65,9 @@ class FeedPresenter(private val mView: FeedActivity) : MainContract.Presenter.Ge
         mView.initSelectedCity(selectedCity)
     }
 
+    /**
+     * отписаться от всех подписок
+     */
     fun onDestroy() {
         disposables.clear()
     }

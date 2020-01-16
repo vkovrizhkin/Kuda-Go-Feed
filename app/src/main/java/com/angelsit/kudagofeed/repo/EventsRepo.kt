@@ -12,6 +12,10 @@ import io.reactivex.Single
 
 object EventsRepo {
 
+    /**
+     * дата класс для базы и для списка
+     * (в идеале это должно быть в другом месте иразны модели)
+     */
     data class EventPreviewEntity(
         val id: Int,
         val title: String,
@@ -19,6 +23,10 @@ object EventsRepo {
         val avatar: String
     )
 
+    /**
+     * метод получения списка событий
+     * Проверяем по флагу из SharedPreferences были ли уже загружены из сети данные
+     */
     fun getEvents(citySlug: String): Single<List<EventPreviewEntity>> {
 
         if (SharedPreferenceManager.getDataWasFetched()) {
@@ -45,6 +53,9 @@ object EventsRepo {
         }
     }
 
+    /**
+     * метод сохранения одного события в Контент провайдер
+     */
     private fun saveEvent(event: EventPreviewEntity) {
         val values = ContentValues()
         values.put(EventsProvider.id, event.id)
@@ -54,6 +65,9 @@ object EventsRepo {
         App.getAppContext().contentResolver.insert(EventsProvider.CONTENT_URI, values)
     }
 
+    /**
+     * метод получения всех событий из Контент провайдера
+     */
     private fun getDataFromPersist(context: Context): List<EventPreviewEntity> {
         val cursor = context.contentResolver.query(
             Uri.parse("content://com.angelsit.kudagofeed.data.contentprovider.EventsProvider/events"),
